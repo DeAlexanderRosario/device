@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Device Info</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Your Device Information</h1>
+        <div id="device-info" class="device-info">
+            Fetching device info...
+        </div>
+    </div>
+
+    <!-- Include the DeviceInfo.js script -->
+    <script src="deviceinfo.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const deviceInfoInstance = new DeviceInfo();
+
+            deviceInfoInstance.fetchDeviceInfo(function(info) {
+                const deviceInfoElement = document.getElementById('device-info');
+                deviceInfoElement.innerHTML = `
+                    <strong>Platform:</strong> ${info.platform}<br>
+                    <strong>Platform Version:</strong> ${info.platformVersion}<br>
+                    <strong>Architecture:</strong> ${info.architecture}<br>
+                    <strong>Model:</strong> ${info.model}<br>
+                    <strong>Browser Version:</strong> ${info.browserVersion}<br>
+                    <strong>Mobile:</strong> ${info.isMobile ? 'Yes' : 'No'}<br>
+                    <strong>Brands:</strong> ${info.brands}
+                `;
+            });
+        });
+    </script>
+</body>
+</html>
